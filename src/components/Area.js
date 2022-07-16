@@ -1,18 +1,24 @@
 import React from "react";
 import "../stylesheets/Area.css";
+import Host from "./Host";
 
-function Area() {
+function Area(props) {
   return (
     <div
       className="area"
       id={
-        /* Pass in the area name here to make sure this is styled correctly */ "id"
+        props.name
       }
     >
       <h3 className="labels">
-        {/* Don't just pass in the name from the data...clean that thing up */}
+        {props.name}
       </h3>
-      {/* See Checkpoint 1 item 2 in the Readme for a clue as to what goes here */}
+      {props.hosts.map(host => {
+        if (host.active){
+          return <Host host={host} key={host.firstName} selectedHost={props.selectedHost} setSelectedHost={props.setSelectedHost}/>
+        }
+        else return null
+      })}
     </div>
   );
 }
